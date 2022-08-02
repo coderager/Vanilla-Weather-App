@@ -34,13 +34,10 @@ function showTempsAndCurrentLocationName(response) {
   let todaysTemp = Math.round(response.data.main.temp);
   console.log(todaysTemp);
   let currentCityName = response.data.name;
-  let realTime = response.data.list.dt;
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${currentCityName}`;
   let replaceTodaysTemps = document.querySelector(".todaysDegrees");
   replaceTodaysTemps.innerHTML = `${todaysTemp} °F`;
-  let replaceCurrentTime = document.querySelector(".currentTime");
-  replaceCurrentTime.innerHTML = `${realTime}`;
 }
 
 function showTemps(response) {
@@ -49,6 +46,9 @@ function showTemps(response) {
   console.log(todaysTemp);
   let replaceTodaysTemps = document.querySelector(".todaysDegrees");
   replaceTodaysTemps.innerHTML = `${todaysTemp} °F`;
+  let cityTime = response.current.dt;
+  let replaceCurrentTime = document.querySelector(".currentTime");
+  replaceCurrentTime.innerHTML = `${cityTime}`;
 }
 
 function getCurrentPosition() {
@@ -92,6 +92,7 @@ function yourTime() {
     "Friday",
     "Saturday",
   ];
+  let time = [today.getTime()];
   let day = daysofWeek[today.getDay()];
   let date = today.getDate();
   let year = today.getFullYear();
@@ -120,7 +121,7 @@ console.log(displayTime);
 let displayTimeGeoLocation = document.querySelector(
   "#geolocation-temps-submit"
 );
-displayTime.addEventListener("click", yourTime);
+displayTimeGeoLocation.addEventListener("click", yourTime);
 console.log(displayTime);
 
 let currentLocationButton = document.querySelector("button");
